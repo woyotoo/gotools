@@ -4,8 +4,10 @@ import (
 	"testing"
 )
 
+// cd gotools
 // go test -v util/password_test.go util/password.go
 
+// Test_PasswordHash: 测试加密
 func Test_PasswordHash(t *testing.T) {
 	t.Log("--> Test_PasswordHash ")
 
@@ -21,6 +23,7 @@ func Test_PasswordHash(t *testing.T) {
 	t.Log("--> 验证结果:", match)
 }
 
+// Test_PasswordVerify: 密码验证
 func Test_PasswordVerify(t *testing.T) {
 	t.Log("--> Test_PasswordVerify ")
 
