@@ -87,6 +87,14 @@ $ go mod init example.com/hello
 $ go get -u github.com/wangyongtao/gotools
 ```
 
+## 发布版本：
+
+git tag -a v1.0.2 -m "add new tag"
+
+git push origin v1.0.2
+git push origin --tags
+
+
 ## 参考 Reference
 
 https://go.dev/doc  
