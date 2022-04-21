@@ -89,9 +89,17 @@ $ go get -u github.com/wangyongtao/gotools
 
 ## 发布版本：
 
-git tag -a v1.0.2 -m "add new tag"
+提交一个新的tag:
 
-git push origin v1.0.2
+git tag -a v1.1.0 -m "add new tag"
+
+查看现有的 tag:
+
+git tag --list
+
+推送tag ：
+
+git push origin v1.1.0
 git push origin --tags
 
 
