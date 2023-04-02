@@ -12,7 +12,7 @@ import (
 func Test_ValidateBaseURI(t *testing.T) {
 	baseURI := "https://wang123.net"
 	redirectURI := "https://wang123.net/oauth2/callback"
-	redirectURI_fail := "https://baidu.com/oauth2/callback"
+	redirectURIFail := "https://baidu.com/s?wd=oauth2/callback"
 
 	// 正常案例
 	err := ValidateBaseURI(baseURI, redirectURI)
@@ -21,7 +21,7 @@ func Test_ValidateBaseURI(t *testing.T) {
 	}
 
 	// 失败案例
-	err = ValidateBaseURI(baseURI, redirectURI_fail)
+	err = ValidateBaseURI(baseURI, redirectURIFail)
 	if err == nil {
 		t.Error("Test_ValidateBaseURI failed. ", "err.Error()")
 	}

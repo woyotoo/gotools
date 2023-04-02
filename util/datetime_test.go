@@ -9,11 +9,33 @@ import (
 // go test -v util/datetime_test.go util/datetime.go
 
 func Test_HumanTime(t *testing.T) {
-	t.Log("---> Test_HumanTime")
 	// var timestamp int64 = 1625882650
-	timestamp := time.Now().Unix() - 3600*24*66
-	str := HumanTime(timestamp)
-	t.Log("---> Test_HumanTime", str)
+	timestamp := time.Now().Unix()
+
+	type testCase struct {
+		Name      string
+		Timestamp int64
+		Expected  string
+	}
+	testCases := []testCase{
+		{"Test - 刚刚", timestamp - 5, "刚刚"},
+		{"Test - 1 分钟前", timestamp - 100, "1 分钟前"},
+		{"Test - 60 分钟前", timestamp - 3600, "60 分钟前"},
+		{"Test - 3 天前", timestamp - 3600*24*3, "3 天前"},
+		{"Test - 2 周前", timestamp - 3600*24*20, "2 周前"},
+		{"Test - 1 月前", timestamp - 3600*24*35, "1 月前"},
+		{"Test - 2 月前", timestamp - 3600*24*66, "2 月前"},
+		{"Test - 3 月前", timestamp - 3600*24*100, "3 月前"},
+		{"Test - 1 年前", timestamp - 3600*24*364, "1 年前"},
+		{"Test - 1 年前", timestamp - 3600*24*366, "1 年前"},
+		{"Test - 1 年前", timestamp - 3600*24*400, "1 年前"},
+	}
+	for _, item := range testCases {
+		result := HumanTime(item.Timestamp)
+		if result != item.Expected {
+			t.Errorf("Test_HumanTime failed. Name[%v], Input[%v], Got[%v], expected[%v]", item.Name, item.Timestamp, result, item.Expected)
+		}
+	}
 }
 
 func Test_Str2HumanTime(t *testing.T) {

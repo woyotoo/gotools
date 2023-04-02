@@ -11,17 +11,17 @@ func UnixTime() int64 {
 	return time.Now().Unix()
 }
 
-// 时间戳转成 datetime 字符串 YY-mm-dd
+// UnixTime2Date 时间戳转成 datetime 字符串 YY-mm-dd
 func UnixTime2Date(timestamp int64) string {
 	return time.Unix(timestamp, 0).Format("2006-01-02")
 }
 
-// 时间戳转成 datetime 字符串 YY-mm-dd HH:ii:ss
+// UnixTime2DateTime 时间戳转成 datetime 字符串 YY-mm-dd HH:ii:ss
 func UnixTime2DateTime(timestamp int64) string {
 	return time.Unix(timestamp, 0).Format("2006-01-02 15:04:05")
 }
 
-// 将时间字符串转成可读性友好的时间字符串
+// Str2HumanTime 将时间字符串转成可读性友好的时间字符串
 func Str2HumanTime(datetime string) string {
 
 	layout := "2006-01-02 15:04:05"
@@ -31,14 +31,14 @@ func Str2HumanTime(datetime string) string {
 	}
 	localTime, _ := time.ParseInLocation(layout, datetime, time.Local)
 	res := localTime.Unix()
-	fmt.Println(" datetime ", datetime)
-	fmt.Println(" localTime ", localTime)
-	fmt.Println(" index ", index)
+	//fmt.Println(" datetime ", datetime)
+	//fmt.Println(" localTime ", localTime)
+	//fmt.Println(" index ", index)
 
 	return HumanTime(res)
 }
 
-// UTC时间字符串转成时间戳
+// Str2UnixTime UTC时间字符串转成时间戳
 func Str2UnixTime(datetime string) int64 {
 	layout := "2006-01-02 15:04:05"
 	index := strings.Index(datetime, "T")
@@ -50,7 +50,7 @@ func Str2UnixTime(datetime string) int64 {
 	return localTime.Unix()
 }
 
-// UTC时间字符串转成时间
+// Str2Datetime UTC时间字符串转成时间
 func Str2Datetime(datetime string) string {
 	layout := "2006-01-02 15:04:05"
 	index := strings.Index(datetime, "T")
@@ -62,7 +62,7 @@ func Str2Datetime(datetime string) string {
 	return localTime.Format("2006-01-02 15:04:05")
 }
 
-// 获取可读性友好的时间字符串
+// HumanTime 获取可读性友好的时间字符串
 func HumanTime(timestamp int64) string {
 	const minute = 60 // 60 秒
 	const hour = 3600 // 3600 秒
@@ -77,7 +77,7 @@ func HumanTime(timestamp int64) string {
 	// time.Sleep(time.Second * 2)
 	// fmt.Println("离现在过去了：", durations.Seconds())
 
-	var s string
+	var s = "刚刚"
 	if diff > year {
 		s = fmt.Sprintf("%.0f 年前", float64(diff/year))
 	} else if diff > month {
@@ -92,8 +92,6 @@ func HumanTime(timestamp int64) string {
 		s = fmt.Sprintf("%.0f 分钟前", float64(diff/minute))
 	} else if diff > 1000 {
 		s = fmt.Sprintf("%.0f 秒前", float64(diff/1000))
-	} else {
-		s = "刚刚"
 	}
 
 	return s
