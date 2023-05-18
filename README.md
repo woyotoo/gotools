@@ -1,7 +1,5 @@
 # My Go Tools (Golang实用工具)
 
-
-
 ## 安装 install
 
 使用 go get 下载包
@@ -44,6 +42,12 @@ func main() {
 }
 
 ```
+
+## Generate go.list file
+
+    go mod tidy
+    go list -m all > go.list
+
 
 ## 推荐 recommend
 
